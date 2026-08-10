@@ -1,0 +1,11 @@
+.dart_tool/
+.packages
+.build/
+build/
+.android/
+.ios/
+.macOS/
+.linux/
+.windows/
+.firebase_options.dart
+.env

@@ -1,0 +1,170 @@
+{
+  "project_info": {
+    "project_number": "309302092776",
+    "project_id": "valentinemagicss",
+    "storage_bucket": "valentinemagicss.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:309302092776:android:70f0e3d55b25260e673a5d",
+        "android_client_info": {
+          "package_name": "com.magicalict.lms.teacher"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "309302092776-mi9h3edhmc4u4mot3rjb9je62d87f49n.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.magicalict.lms.teacher",
+            "certificate_hash": "4c2c38d4eff41dc489c11c33cacfdc883738c863"
+          }
+        },
+        {
+          "client_id": "309302092776-tahq0epa6rhcrvg3j1mat3ojnfdpnrsa.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAG3JEj_O3L9lwanRz7SV2peIQd84fFI28"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "309302092776-tahq0epa6rhcrvg3j1mat3ojnfdpnrsa.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "309302092776-pj9bdgeh069acnhk7nh7vjo7mifn7fho.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.magicallms.student"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:309302092776:android:5cc30f42c6f57c75673a5d",
+        "android_client_info": {
+          "package_name": "com.magicallms.admin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "309302092776-b3mnh696vpvgtf8akc9l4kf941mc59fu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.magicallms.admin",
+            "certificate_hash": "4c2c38d4eff41dc489c11c33cacfdc883738c863"
+          }
+        },
+        {
+          "client_id": "309302092776-tahq0epa6rhcrvg3j1mat3ojnfdpnrsa.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAG3JEj_O3L9lwanRz7SV2peIQd84fFI28"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "309302092776-tahq0epa6rhcrvg3j1mat3ojnfdpnrsa.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "309302092776-pj9bdgeh069acnhk7nh7vjo7mifn7fho.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.magicallms.student"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:309302092776:android:0637d76ce4bf63fa673a5d",
+        "android_client_info": {
+          "package_name": "com.magicallms.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "309302092776-tahq0epa6rhcrvg3j1mat3ojnfdpnrsa.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAG3JEj_O3L9lwanRz7SV2peIQd84fFI28"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "309302092776-tahq0epa6rhcrvg3j1mat3ojnfdpnrsa.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "309302092776-pj9bdgeh069acnhk7nh7vjo7mifn7fho.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.magicallms.student"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:309302092776:android:72dad7ce011dee32673a5d",
+        "android_client_info": {
+          "package_name": "com.magicallms.student"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "309302092776-tahq0epa6rhcrvg3j1mat3ojnfdpnrsa.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAG3JEj_O3L9lwanRz7SV2peIQd84fFI28"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "309302092776-tahq0epa6rhcrvg3j1mat3ojnfdpnrsa.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "309302092776-pj9bdgeh069acnhk7nh7vjo7mifn7fho.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.magicallms.student"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
