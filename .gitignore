@@ -7,5 +7,3 @@ build/
 .macOS/
 .linux/
 .windows/
-.firebase_options.dart
-.env
