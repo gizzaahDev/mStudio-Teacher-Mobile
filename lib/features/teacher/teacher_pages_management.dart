@@ -761,19 +761,37 @@ class _PaymentsPageState extends State<_PaymentsPage> {
       future: request,
       builder: (context, snapshot) {
         final rows = snapshot.data ?? const <Map<String, dynamic>>[];
-        final paidRows = rows.where((item) => item['paid'] == true).toList();
+        // batchPaymentRegister is scoped by the signed-in teacher on the API.
+        // Keep free-card rows out of financial totals even if a legacy record
+        // happens to contain paid=true.
+        final paidRows = rows
+            .where((item) =>
+                item['paid'] == true && item['freeCard'] != true)
+            .toList();
         final freeRows =
             rows.where((item) => item['freeCard'] == true).toList();
         final dueRows = rows
             .where((item) => item['paid'] != true && item['freeCard'] != true)
             .toList();
+        final dailyRows = rows
+            .where((item) =>
+                item['freeCard'] != true && item['feeType'] == 'daily')
+            .toList();
+        final monthlyRows = rows
+            .where((item) =>
+                item['freeCard'] != true && item['feeType'] == 'monthly')
+            .toList();
+        double amount(Map<String, dynamic> item) =>
+            ((item['amount'] ??
+                        (item['feeType'] == 'daily'
+                            ? item['dailyFee']
+                            : item['monthlyFee']) ??
+                        0) as num)
+                    .toDouble();
         final income = paidRows.fold<double>(
-            0,
-            (sum, item) =>
-                sum +
-                ((item['amount'] ?? item['monthlyFee'] ?? item['dailyFee'] ?? 0)
-                        as num)
-                    .toDouble());
+            0, (sum, item) => sum + amount(item));
+        final dueAmount = dueRows.fold<double>(
+            0, (sum, item) => sum + amount(item));
         return _PageFrame(
           title: 'Payments',
           subtitle: 'Batch-wise monthly payment register and income summary.',
@@ -788,7 +806,8 @@ class _PaymentsPageState extends State<_PaymentsPage> {
                       decoration: _input('Year'),
                       keyboardType: TextInputType.number,
                       onChanged: (value) =>
-                          year = int.tryParse(value) ?? year)),
+                          year = int.tryParse(value) ?? year,
+                      onFieldSubmitted: (_) => refresh())),
               const SizedBox(width: 8),
               Expanded(
                   child: DropdownButtonFormField<int>(
@@ -811,27 +830,37 @@ class _PaymentsPageState extends State<_PaymentsPage> {
                 Chip(
                     avatar: const Icon(Icons.payments_outlined, size: 18),
                     label: Text('Income LKR ${income.toStringAsFixed(2)}')),
+                Chip(label: Text('Due LKR ${dueAmount.toStringAsFixed(2)}')),
                 Chip(label: Text('Paid ${paidRows.length}')),
                 Chip(label: Text('Due ${dueRows.length}')),
                 Chip(label: Text('Free cards ${freeRows.length}')),
+                Chip(label: Text('Daily fees ${dailyRows.length}')),
+                Chip(label: Text('Monthly fees ${monthlyRows.length}')),
               ]),
               const SizedBox(height: 8),
             ],
-            ...rows.map((payment) => Card(
+            ...rows.map((payment) {
+              final student = _map(payment['student']);
+              final name = payment['studentName'] ?? student['name'] ??
+                  payment['studentId'] ?? student['studentId'] ?? 'Student';
+              final id = payment['studentId'] ?? student['studentId'] ?? '';
+              final grade = payment['grade'] ?? student['grade'] ?? '';
+              return Card(
                     child: ListTile(
-                  title: Text(
-                      '${payment['studentName'] ?? payment['studentId'] ?? 'Student'}'),
+                  title: Text('$name'),
                   subtitle: Text([
-                    '${payment['studentId'] ?? ''}',
+                    '$id',
                     '${payment['batchName'] ?? ''}',
                     '${payment['classType'] ?? payment['batchType'] ?? ''}',
-                    '${payment['grade'] ?? ''}',
+                    '$grade',
                     payment['freeCard'] == true
                         ? 'Free card'
                         : payment['paid'] == true
                             ? 'Paid${('${payment['paidAt'] ?? ''}').isEmpty ? '' : ' · ${payment['paidAt']}'}'
                             : 'Payment due',
                     if (payment['feeType'] != null) '${payment['feeType']} fee',
+                    if (payment['freeCard'] != true)
+                      'LKR ${amount(payment).toStringAsFixed(2)}',
                   ].where((value) => value.isNotEmpty).join(' · ')),
                   trailing: payment['freeCard'] == true
                       ? const Chip(label: Text('Free card'))
@@ -854,7 +883,8 @@ class _PaymentsPageState extends State<_PaymentsPage> {
                                       await refresh();
                                     },
                               child: const Text('Mark paid')),
-                ))),
+                )));
+            }),
           ],
         );
       });
